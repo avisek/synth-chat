@@ -53,7 +53,7 @@
     "deploy": {
       "name": "deploy",
       "command": "pnpm build && pnpm start",
-      "runAtStart": false,
+      "runAtStart": true,
       "preview": {
         "port": 8000
       }
