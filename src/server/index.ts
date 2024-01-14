@@ -1,9 +1,13 @@
 import { env } from './env'
 import express from 'express'
 import { join } from 'node:path/posix'
+import colors from 'picocolors'
 
 const BASE_URL = '/' ?? import.meta.env.BASE_URL
 const PORT = env.PORT ?? 8000
+
+import { connect } from './connections/mongoDb'
+connect()
 
 export const app = express()
 
@@ -21,6 +25,6 @@ if (!runningInVite) {
     res.sendFile(clientDir + '/index.html')
   })
   app.listen(PORT, () =>
-    console.log(`Server started at http://localhost:${PORT}/`)
+    console.log(colors.cyan(`Server started at http://localhost:${PORT}/`))
   )
 }
