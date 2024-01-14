@@ -2,8 +2,9 @@ import { env } from './env'
 import express from 'express'
 import { join } from 'node:path/posix'
 import colors from 'picocolors'
+import cookieParser from 'cookie-parser'
 
-const BASE_URL = '/' ?? import.meta.env.BASE_URL
+const BASE_URL = import.meta.env.BASE_URL
 const PORT = env.PORT ?? 8000
 
 import { connect } from './connections/mongoDb'
@@ -14,7 +15,15 @@ export const app = express()
 const api = express.Router()
 app.use(join(BASE_URL, '/api'), api)
 
-api.get('/hi', (_, res) => res.send('hello'))
+api.use(express.json())
+
+api.use(cookieParser(process.env.COOKIE_SECRET))
+
+api.get('/hi', (_, res) => res.json('hello'))
+
+
+import userRouter from './routes/User'
+api.use('/user', userRouter)
 
 
 const runningInVite = process.env['VITE'] === 'true'
