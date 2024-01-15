@@ -5,10 +5,10 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-// layouts
+// Layouts
 import RootLayout from './layouts/RootLayout'
 
-// pages
+// Pages
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import LogIn from './pages/LogIn'
