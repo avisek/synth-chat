@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
+import jwt, { VerifyErrors } from 'jsonwebtoken'
 import { COOKIE_NAME } from './constants.js'
 
 export function createToken(id: string, email: string, expiresIn: string) {
@@ -20,7 +20,8 @@ export async function verifyToken(
     return res.status(401).json({ message: 'Token Not Received' })
   }
   return new Promise<void>((resolve, reject) => {
-    return jwt.verify(token, process.env.JWT_SECRET, (error, success) => {
+    // @ts-ignore
+    return jwt.verify(token, process.env.JWT_SECRET, (error: VerifyErrors, success) => {
       if (error) {
         reject(error.message)
         return res.status(401).json({ message: 'Token Expired' })

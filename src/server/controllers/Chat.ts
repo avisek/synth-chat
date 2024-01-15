@@ -30,7 +30,7 @@ export async function generateChatCompletion(
       model: 'gpt-3.5-turbo',
       messages: chats,
     })
-    user.chats.push(chatResponse.data.choices[0].message)
+    user.chats.push(chatResponse.data.choices[0].message!)
     await user.save()
     return res.status(200).json({ chats: user.chats })
   } catch (error) {
