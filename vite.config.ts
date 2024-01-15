@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import express from './vite-plugins/express'
+import useBackend from './vite-plugins/useBackend'
 import githubPages from './vite-plugins/githubPages'
 
 const developmentPort = 3000
@@ -42,6 +43,9 @@ export default defineConfig(({ isSsrBuild }) => ({
   plugins: [
     react(),
     express(serverDir),
+    useBackend((env) => {
+      return env.GITHUB_ACTIONS === 'true' ? env.OFFICIAL_BACKEND_URL : '/'
+    }),
     githubPages(),
   ],
 }))
