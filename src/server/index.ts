@@ -2,6 +2,7 @@ import { env } from './env'
 import express from 'express'
 import { join } from 'node:path/posix'
 import colors from 'picocolors'
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
 const BASE_URL = import.meta.env.BASE_URL
@@ -11,6 +12,8 @@ import { connect } from './connections/mongoDb'
 connect()
 
 export const app = express()
+
+app.use(cors())
 
 const api = express.Router()
 app.use(join(BASE_URL, '/api'), api)
