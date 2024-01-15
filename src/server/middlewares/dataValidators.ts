@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { body, validationResult } from "express-validator"
 
-export default function validate(validations: any[]) {
+export function validate(validations: any[]) {
   return async (req: Request, res: Response, next: NextFunction) => {
     for (let validation of validations) {
       const result = await validation.run(req)
