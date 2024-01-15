@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {
+  createBrowserRouter, 
+  createRoutesFromElements,
+  Route, 
+  RouterProvider,
+} from 'react-router-dom'
+
+// layouts
+import RootLayout from './layouts/RootLayout'
+
+// pages
+import Home from './pages/Home'
+import SignUp from './pages/SignUp'
+import LogIn from './pages/LogIn'
+import NotFound from './pages/NotFound'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home/>}/>
+      <Route path="signup" element={<SignUp/>}/>
+      <Route path="login" element={<LogIn/>}/>
+      <Route path="*" element={<NotFound/>}/>
+    </Route>
+  ),
+  { basename: import.meta.env.BASE_URL },
+)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <h1 className="text-3xl font-bold underline">
-          Hello Tailwind!
-        </h1>
-      </div>
-      <p className="read-the-docs">
-        Project is under construction. (^^)
-      </p>
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router}/>
 }
-
-export default App

@@ -1,0 +1,18 @@
+@tailwind base;
+
+@layer base {
+  html, body, #root {
+    @apply w-full h-full grid;
+  }
+  body {
+    @apply
+      bg-slate-50    dark:bg-slate-900
+      text-slate-800 dark:text-slate-100/90
+    ;
+  }
+}
+
+@tailwind components;
+
+@tailwind utilities;
+

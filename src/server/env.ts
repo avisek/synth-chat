@@ -6,11 +6,14 @@ import { z } from 'zod'
 import { loadEnv } from 'vite'
 
 const envSchema = z.object({
+  // .env
   PORT: z.string().min(1),
   PUBLIC_BACKEND_URL: z.string().min(1),
   
+  // .env.local
   MONGODB_URL: z.string().url(),
-  OPEN_AI_KEY: z.string().min(1),
+  OPENAI_API_KEY: z.string().min(1),
+  OPENAI_ORGANIZATION_ID: z.string().min(1),
   JWT_SECRET: z.string().min(1),
   COOKIE_SECRET: z.string().min(1),
 })
