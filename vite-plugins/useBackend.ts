@@ -4,6 +4,11 @@
 
 import { loadEnv } from 'vite'
 import type { PluginOption } from 'vite'
+
+function ensureTrailingSlash(url: string): string {
+  return `${url}${url.endsWith('/') ? '' : '/'}`
+}
+
 export default function useBackend(
   backendUrl: string | ((env: NodeJS.ProcessEnv) => string)
 ): PluginOption {
@@ -18,7 +23,7 @@ export default function useBackend(
         })
       return {
         define: {
-          'import.meta.env.BACKEND_URL': JSON.stringify(url),
+          'import.meta.env.BACKEND_URL': JSON.stringify(ensureTrailingSlash(url)),
         },
       }
     },
