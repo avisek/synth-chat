@@ -7,6 +7,7 @@ import {
 
 // Layouts
 import RootLayout from './layouts/RootLayout'
+import ChatLayout from './layouts/ChatLayout'
 
 // Pages
 import Home from './pages/Home'
@@ -28,12 +29,16 @@ export default function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path='/' element={<RootLayout/>}>
-          <Route index element={<Home/>}/>
+          <Route index element={
+            auth?.isLoggedIn && auth.user ? <Navigate replace to={'/chat'}/> : <Home/>
+          }/>
           <Route path='signup' element={<SignUp/>}/>
           <Route path='login' element={<LogIn/>}/>
           <Route path='chat' element={
-            auth?.isLoggedIn && auth.user ? <Chats/> : <Navigate replace to={'/'}/>
-          }/>
+            auth?.isLoggedIn && auth.user ? <ChatLayout/> : <Navigate replace to={'/'}/>
+          }>
+            <Route index element={<Chats/>}/>
+          </Route>
           <Route path='*' element={<NotFound/>}/>
         </Route>
       </Routes>
