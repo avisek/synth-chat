@@ -10,11 +10,11 @@ export default function Sidebar({ children }: SidebarProps) {
   const auth = useAuth()
   
   return (
-    <div className="grid grid-cols-[auto,_1fr]">
-      <div className="p-2 flex flex-col bg-slate-100 dark:bg-slate-800">
+    <div className="w-full h-full grid grid-cols-[auto,_1fr]">
+      <div className="p-2 flex flex-col bg-slate-200 dark:bg-slate-800">
         
         <NavLink
-          className="px-4 py-3 md:mb-28 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+          className="px-4 py-3 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
           to="/"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -26,11 +26,11 @@ export default function Sidebar({ children }: SidebarProps) {
           </div>
         </NavLink>
         
-        <nav>
+        <nav className="my-auto">
           <ul>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -40,7 +40,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -50,7 +50,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-green-600 dark:text-green-400"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md text-green-600 dark:text-green-400"
                 to="/"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -60,7 +60,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -70,7 +70,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -80,7 +80,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -91,7 +91,7 @@ export default function Sidebar({ children }: SidebarProps) {
             {auth?.isLoggedIn ? (
               <li>
                 <NavLink
-                  className="px-4 py-5 flex flex-col items-center hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md"
+                  className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
                   to="/"
                   onClick={auth.logout}
                 >
@@ -106,7 +106,7 @@ export default function Sidebar({ children }: SidebarProps) {
         
       </div>
       
-      <div className="p-6">
+      <div className="">
         {children}
       </div>
       
