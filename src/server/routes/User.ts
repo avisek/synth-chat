@@ -18,7 +18,7 @@ const userRouter = Router()
 userRouter.get('/', getAllUsers)
 userRouter.post('/signup', validate(userSignupValidator), userSignup)
 userRouter.post('/login', validate(userLoginValidator), userLogin)
-userRouter.get('/auth-status', verifyToken, verifyUser)
+userRouter.get('/auth-status', verifyUser)
 userRouter.get('/logout', verifyToken, userLogout)
 
 export default userRouter
