@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import User from '../models/User.js'
-import { configureOpenAI } from '../config/openAi.js'
+import User from '../models/User'
+import { configureOpenAI } from '../config/openAi'
 import { OpenAIApi, ChatCompletionRequestMessage } from 'openai'
 export async function generateChatCompletion(
   req: Request,
