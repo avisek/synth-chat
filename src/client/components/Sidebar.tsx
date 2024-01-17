@@ -11,7 +11,7 @@ export default function Sidebar({ children }: SidebarProps) {
   
   return (
     <div className="w-full h-full grid grid-cols-[auto,_1fr]">
-      <div className="p-2 flex flex-col bg-slate-800">
+      <div className="p-2 flex flex-col overflow-y-auto bg-slate-800">
         
         <NavLink
           className="px-4 py-3 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
@@ -104,7 +104,7 @@ export default function Sidebar({ children }: SidebarProps) {
         
       </div>
       
-      <div className="">
+      <div className="overflow-auto">
         {children}
       </div>
       

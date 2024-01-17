@@ -4,7 +4,6 @@ import { useAuth } from '../contexts/AuthContext'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/apiCommunicator'
 import toast from 'react-hot-toast'
 import Chat from './Chat'
-import { Link } from 'react-router-dom'
 
 type Message = {
   role: 'user' | 'assistant'
@@ -67,9 +66,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
     <div
       className="w-full h-full grid grid-rows-[1fr,_auto]"
     >
-      <div
-        className="w-full h-full"
-      >
+      <div className="overflow-y-auto">
         {chatMessages.map(({role, content}, index) => (
           <Chat key={index} role={role} content={content}/>
         ))}

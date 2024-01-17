@@ -8,7 +8,7 @@ export type TopbarProps = {
 
 export default function Topbar({ children }: TopbarProps) {
   return (
-    <div className="w-full h-full max-h-dvh overflow-y-auto grid grid-rows-[auto,_1fr]">
+    <div className="w-full h-full grid grid-rows-[auto,_1fr]">
       <div className="p-3 flex items-center bg-zinc-800">
         
         <div
@@ -44,7 +44,7 @@ export default function Topbar({ children }: TopbarProps) {
         
       </div>
       
-      <div className="p-6">
+      <div className="overflow-auto">
         {children}
       </div>
       

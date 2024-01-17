@@ -2,7 +2,7 @@
 
 @layer base {
   html, body, #root {
-    @apply w-full h-full grid;
+    @apply w-full h-full flex flex-col;
   }
   body {
     @apply

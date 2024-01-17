@@ -92,34 +92,36 @@ export default function ConversationPanel({  }: ConversationPanelProps) {
         ))}
       </div>
       
-      <Link
-        className="mt-4 px-4 py-3 flex items-center text-green-400 border border-green-500 rounded-full hover:bg-green-400 hover:text-green-950 active:bg-green-500 active:scale-95 transition"
-        to='/'
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-          className="w-6 h-6 mr-3"
+      <div className="">
+        <Link
+          className="mt-4 px-4 py-3 flex items-center text-green-400 border border-green-500 rounded-full hover:bg-green-400 hover:text-green-950 active:bg-green-500 active:scale-95 transition"
+          to='/'
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-        <div className="overflow-hidden whitespace-nowrap text-ellipsis">
-          New Chat
-        </div>
-      </Link>
-      
-      <Link
-        className="mt-4 px-4 py-3 flex items-center text-red-400 border border-red-500 rounded-full hover:bg-red-400 hover:text-red-950 active:bg-red-500 active:scale-95 transition"
-        to='/'
-        onClick={handleDeleteChats}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-          className="w-6 h-6 mr-3"
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+            className="w-6 h-6 mr-3"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          <div className="overflow-hidden whitespace-nowrap text-ellipsis">
+            New Chat
+          </div>
+        </Link>
+        
+        <Link
+          className="mt-4 px-4 py-3 flex items-center text-red-400 border border-red-500 rounded-full hover:bg-red-400 hover:text-red-950 active:bg-red-500 active:scale-95 transition"
+          to='/'
+          onClick={handleDeleteChats}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z" />
-        </svg>
-        <div className="overflow-hidden whitespace-nowrap text-ellipsis">
-          Clear Conversations
-        </div>
-      </Link>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+            className="w-6 h-6 mr-3"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z" />
+          </svg>
+          <div className="overflow-hidden whitespace-nowrap text-ellipsis">
+            Clear Conversations
+          </div>
+        </Link>
+      </div>
     </div>
   )
 }
