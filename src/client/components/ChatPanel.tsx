@@ -20,7 +20,8 @@ export default function ChatPanel({  }: ChatPanelProps) {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const auth = useAuth()
   const [chatMessages, setChatMessages] = useState<Message[]>([])
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const content = inputRef.current?.value as string
     if (inputRef && inputRef.current) {
       inputRef.current.value = ''
@@ -74,11 +75,13 @@ export default function ChatPanel({  }: ChatPanelProps) {
         ))}
       </div>
         
-      <div
+      <form
+        onSubmit={handleSubmit}
         className="p-2 flex items-stretch border border-slate-400 rounded-lg"
       >
         
         <button
+          type="button"
           className="px-2 hover:bg-slate-700 rounded-md"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -94,6 +97,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
         />
         
         <button
+          type="button"
           className="px-2 hover:bg-slate-700 rounded-md"
           // onClick={handleDeleteChats}
         >
@@ -104,14 +108,14 @@ export default function ChatPanel({  }: ChatPanelProps) {
         
         <button
           className="px-2 hover:bg-slate-700 rounded-md"
-          onClick={handleSubmit}
+          type="submit"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
           </svg>
         </button>
         
-      </div>
+      </form>
       
     </div>
   )
