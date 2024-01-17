@@ -85,7 +85,7 @@ export default function ConversationPanel({  }: ConversationPanelProps) {
       >Text Generator</h2>
       
       <div
-        className="overflow-y-auto"
+        className="overflow-y-auto pr-3"
       >
         {conversations.map(({id, text}) => (
           <Conversation key={id} id={id} text={text}/>
