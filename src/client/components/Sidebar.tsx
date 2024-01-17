@@ -11,10 +11,10 @@ export default function Sidebar({ children }: SidebarProps) {
   
   return (
     <div className="w-full h-full grid grid-cols-[auto,_1fr]">
-      <div className="p-2 flex flex-col bg-slate-200 dark:bg-slate-800">
+      <div className="p-2 flex flex-col bg-slate-800">
         
         <NavLink
-          className="px-4 py-3 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+          className="px-4 py-3 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
           to="/"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -30,7 +30,7 @@ export default function Sidebar({ children }: SidebarProps) {
           <ul>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -40,7 +40,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -50,7 +50,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md text-green-600 dark:text-green-400"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95 text-green-400"
                 to="/"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -60,7 +60,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -70,7 +70,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -80,7 +80,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </li>
             <li>
               <NavLink
-                className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
                 to="#"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -88,19 +88,17 @@ export default function Sidebar({ children }: SidebarProps) {
                 </svg>
               </NavLink>
             </li>
-            {auth?.isLoggedIn ? (
-              <li>
-                <NavLink
-                  className="px-4 py-5 flex flex-col items-center hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
-                  to="/"
-                  onClick={auth.logout}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                  </svg>
-                </NavLink>
-              </li>
-            ) : null}
+            <li>
+              <NavLink
+                className="px-4 py-5 flex flex-col items-center hover:bg-slate-700 rounded-md transition active:scale-95"
+                to="/"
+                onClick={() => {auth?.isLoggedIn && auth.logout()}}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+              </NavLink>
+            </li>
           </ul>
         </nav>
         

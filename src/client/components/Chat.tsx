@@ -1,3 +1,5 @@
+import { cn } from "../utils/cn"
+
 export type ChatProps = {
   role: 'user' | 'assistant'
   content: string
@@ -6,10 +8,14 @@ export type ChatProps = {
 export default function Chat({ role, content }: ChatProps) {
   return (
     <div
-      className="my-2"
+      className="my-5 flex flex-col items-center"
     >
       <div
-        className="mx-6 px-4 py-3 bg-slate-200 dark:bg-slate-800 rounded-md"
+        className={cn(
+          'px-4 py-3 bg-slate-800 rounded-xl',
+          role === 'assistant' && 'self-start mr-16',
+          role === 'user' && 'self-end ml-16',
+        )}
       >
         {content}
       </div>

@@ -23,8 +23,6 @@ import './App.css'
 export default function App() {
   const auth = useAuth()
   
-  console.log(auth)
-  
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <Routes>
