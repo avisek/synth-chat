@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <App/>
       <Toaster
         position='bottom-right'
-        toastOptions={{ className: 'bg-slate-800 text-slate-100' }}
+        toastOptions={{ className: '!bg-slate-800 !text-slate-100' }}
       />
     </AuthProvider>
   </React.StrictMode>,
