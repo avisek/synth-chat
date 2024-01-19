@@ -28,6 +28,11 @@ export default function SignUp() {
               error.response.data.errors[0].msg,
               { id: 'signup' }
             )
+          } else {
+            toast.error(
+              error.response.data?.message,
+              { id: 'signup' }
+            )
           }
         } else if (error.request) {
           toast.error(

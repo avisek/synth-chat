@@ -27,6 +27,11 @@ export default function LogIn() {
               error.response.data.errors[0].msg,
               { id: 'login' }
             )
+          } else {
+            toast.error(
+              error.response.data?.message,
+              { id: 'login' }
+            )
           }
         } else if (error.request) {
           toast.error(
