@@ -13,16 +13,19 @@ export function validate(validations: any[]) {
     if (errors.isEmpty()) {
       return next()
     }
-    return res.status (422).json({ errors: errors. array() })
+    return res.status(422).json({
+      message: 'Validation error',
+      errors: errors.array(),
+    })
   }
 }
 
 export const userLoginValidator = [
-  body('email').trim().isEmail().withMessage('Email is required'),
+  body('email').trim().isEmail().withMessage('Email is invalid'),
   body('password')
     .trim()
     .isLength({ min: 6 })
-    .withMessage('Password should contain atleast 6 characters'),
+    .withMessage('Password should be at least 6 characters'),
 ]
 
 export const userSignupValidator = [
@@ -31,5 +34,5 @@ export const userSignupValidator = [
 ]
 
 export const chatCompletionValidator = [
-  body('message').notEmpty().withMessage('Message  is required'),
+  body('message').notEmpty().withMessage('Message is required'),
 ]

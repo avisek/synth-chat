@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import toast from 'react-hot-toast'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { AxiosError } from 'axios'
 
 export default function SignUp() {
   const navigate = useNavigate()
@@ -20,6 +21,25 @@ export default function SignUp() {
       toast.success('Signed Up Successfully', { id: 'signup' })
     } catch (error) {
       console.log(error)
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          if (error.response.data.message === 'Validation error') {
+            toast.error(
+              error.response.data.errors[0].msg,
+              { id: 'signup' }
+            )
+          }
+        } else if (error.request) {
+          toast.error(
+            'Server Error\n\n' +
+            'The request was made but no response was received',
+            { id: 'signup' }
+          )
+        } else {
+          console.log('Error', error.message)
+        }
+        return
+      }
       toast.error('Signing Up Failed', { id: 'signup' })
     }
   }
@@ -47,6 +67,7 @@ export default function SignUp() {
               type="text"
               id="name"
               name="name"
+              required
             />
           </div>
           
@@ -57,6 +78,7 @@ export default function SignUp() {
               type="email"
               id="email"
               name="email"
+              required
             />
           </div>
           
@@ -67,6 +89,8 @@ export default function SignUp() {
               type="password"
               id="password"
               name="password"
+              required
+              minLength={6}
             />
           </div>
           
