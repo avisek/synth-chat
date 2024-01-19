@@ -10,6 +10,7 @@ export type ProfilePopoverProps = {
 export default function ProfilePopover({  }: ProfilePopoverProps) {
   const auth = useAuth()
   const name = auth?.user?.name ?? ''
+  const email = auth?.user?.email ?? ''
   
   const [isOpen, setIsOpen] = useState(false)
   
@@ -32,7 +33,7 @@ export default function ProfilePopover({  }: ProfilePopoverProps) {
       
       <div
         className={cn(
-          'fixed inset-0 w-full h-full z-10 bg-slate-900/50 pointer-events-none opacity-0 transition-opacity',
+          'fixed inset-0 w-full h-full z-10 bg-slate-900/65 pointer-events-none opacity-0 transition-opacity',
           isOpen && 'pointer-events-auto opacity-100',
         )}
         onClick={() => setIsOpen(false)}
@@ -40,16 +41,25 @@ export default function ProfilePopover({  }: ProfilePopoverProps) {
       
       <div
         className={cn(
-          'absolute right-0 mx-7 my-2 w-max z-20 rounded-xl bg-slate-800 pointer-events-none opacity-0 transition',
-          isOpen && 'pointer-events-auto opacity-100',
+          'absolute right-0 mx-6 my-2 p-2 w-max z-20 text-center rounded-2xl bg-slate-800 shadow-sm pointer-events-none scale-75 origin-top-right opacity-0 transition',
+          isOpen && 'pointer-events-auto scale-100 opacity-100',
         )}
       >
+        <div className="px-2 py-3">
+          <img
+            className="mx-auto mt-1 mb-3 w-14 h-14 rounded-full"
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}`}
+            key={name}
+          />
+          <div className="text-2xl">{name}</div>
+          <div className="text">{email}</div>
+        </div>
         <ul className="">
           <li
-            className="p-1 flex items-center text-red-400"
+            className="flex items-center text-red-400"
           >
             <Link
-              className="px-4 py-3 flex items-center hover:bg-slate-700 rounded-xl transition active:scale-95"
+              className="px-4 py-3 w-full flex items-center justify-center hover:bg-slate-700 rounded-xl transition active:scale-95"
               to="/"
               onClick={() => {auth?.isLoggedIn && auth.logout()}}
             >

@@ -46,6 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser({ email: data.email, name: data.name })
       setIsLoggedIn(true)
     }
+    console.log({data})
   }
   
   async function signup(name: string, email: string, password: string) {

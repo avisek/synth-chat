@@ -47,7 +47,11 @@ export async function userSignup(req: Request, res: Response) {
       // sameSite: 'none',
     })
     
-    return res.status(201).json ({ message: 'Signed up successfully' })
+    return res.status(201).json({
+      message: 'Signed up successfully',
+      name: name,
+      email: email,
+    })
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: error?.toString() })
@@ -88,7 +92,11 @@ export async function userLogin(req: Request, res: Response) {
       // sameSite: 'none',
     })
     
-    return res.status(200).json({ message: 'Logged in successfully' })
+    return res.status(200).json({
+      message: 'Logged in successfully',
+      name: user.name,
+      email: email,
+    })
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: error?.toString() })
