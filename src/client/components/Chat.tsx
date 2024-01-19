@@ -1,4 +1,6 @@
 import { cn } from "../utils/cn"
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export type ChatProps = {
   role: 'user' | 'assistant'
@@ -17,7 +19,10 @@ export default function Chat({ role, content }: ChatProps) {
           role === 'user' && 'self-end ml-16',
         )}
       >
-        {content}
+        <Markdown
+          remarkPlugins={[remarkGfm]}
+          className="prose prose-invert"
+        >{content}</Markdown>
       </div>
     </div>
   )
