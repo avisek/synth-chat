@@ -10,28 +10,39 @@ type Message = {
   content: string
 }
 
-export type ChatPanelProps = {
-  
-}
-
-export default function ChatPanel({  }: ChatPanelProps) {
+export default function ChatPanel() {
   const navigate = useNavigate()
-  const inputRef = useRef<HTMLInputElement | null>(null)
   const auth = useAuth()
   const [chatMessages, setChatMessages] = useState<Message[]>([])
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const content = inputRef.current?.value as string
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = ''
+  const [message, setMessage] = useState('')
+  
+  function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setMessage(e.target.value)
+  }
+  
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      sendMessage(message)
+      setMessage('')
     }
+  }
+  
+  async function sendMessage(content: string) {
+    if (!content) return
     const newMessage: Message = { role: 'user', content }
     setChatMessages((prev) => [...prev, newMessage])
     const chatData = await sendChatRequest(content)
     setChatMessages([...chatData.chats])
-    //
   }
-  const handleDeleteChats = async () => {
+  
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    sendMessage(message)
+    setMessage('')
+  }
+  
+  async function handleDeleteChats() {
     try {
       toast.loading('Deleting Chats', { id: 'deletechats' })
       await deleteUserChats()
@@ -42,6 +53,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
       toast.error('Deleting chats failed', { id: 'deletechats' })
     }
   }
+  
   useLayoutEffect(() => {
     if (auth?.isLoggedIn && auth.user) {
       toast.loading('Loading Chats', { id: 'loadchats' })
@@ -56,6 +68,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
         })
     }
   }, [auth])
+  
   useEffect(() => {
     if (!auth?.user) {
       return navigate('/login')
@@ -74,28 +87,30 @@ export default function ChatPanel({  }: ChatPanelProps) {
         
       <form
         onSubmit={handleSubmit}
-        className="p-2 flex items-stretch border border-slate-400 rounded-xl"
+        className="p-2 flex items-end border border-slate-500 focus-within:border-slate-400 rounded-xl"
       >
         
         <button
           type="button"
-          className="px-2 rounded-md hover:bg-slate-700 active:scale-95"
+          className="p-2 rounded-md hover:bg-slate-700 active:scale-95"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
           </svg>
         </button>
         
-        <input
-          ref={inputRef}
-          className="grow px-2 py-2 bg-transparent outline-none"
-          type="text"
+        <textarea
+          className="grow px-2 py-2 resize-none bg-transparent outline-none"
+          value={message}
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          rows={Math.min(message.split('\n').length, 4)}
           placeholder="Send a message"
         />
         
         <button
           type="button"
-          className="px-2 rounded-md hover:bg-slate-700 active:scale-95"
+          className="p-2 rounded-md hover:bg-slate-700 active:scale-95"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
@@ -103,7 +118,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
         </button>
         
         <button
-          className="px-2 rounded-md text-green-400 hover:bg-slate-700 active:scale-95"
+          className="p-2 rounded-md text-green-400 hover:bg-slate-700 active:scale-95"
           type="submit"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
