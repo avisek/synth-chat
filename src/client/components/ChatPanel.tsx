@@ -74,12 +74,12 @@ export default function ChatPanel({  }: ChatPanelProps) {
         
       <form
         onSubmit={handleSubmit}
-        className="p-2 flex items-stretch border border-slate-400 rounded-lg"
+        className="p-2 flex items-stretch border border-slate-400 rounded-xl"
       >
         
         <button
           type="button"
-          className="px-2 hover:bg-slate-700 rounded-md"
+          className="px-2 rounded-md hover:bg-slate-700 active:scale-95"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
@@ -95,8 +95,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
         
         <button
           type="button"
-          className="px-2 hover:bg-slate-700 rounded-md"
-          // onClick={handleDeleteChats}
+          className="px-2 rounded-md hover:bg-slate-700 active:scale-95"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
@@ -104,7 +103,7 @@ export default function ChatPanel({  }: ChatPanelProps) {
         </button>
         
         <button
-          className="px-2 hover:bg-slate-700 rounded-md"
+          className="px-2 rounded-md text-green-400 hover:bg-slate-700 active:scale-95"
           type="submit"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
