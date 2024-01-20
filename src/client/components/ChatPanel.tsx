@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/apiCommunicator'
@@ -75,16 +75,26 @@ export default function ChatPanel() {
     }
   }, [auth])
   
+  const chatScrollerRef = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const scroller = chatScrollerRef.current
+    if (scroller === null) return
+    scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight
+  }, [chatMessages, chatScrollerRef])
+  
   return (
     <div
       className="w-full h-full grid grid-rows-[1fr,_auto]"
     >
-      <div className="overflow-y-auto pr-3">
+      <div ref={chatScrollerRef} className="overflow-y-auto pr-3">
         {chatMessages.map(({role, content}, index) => (
           <Chat key={index} role={role} content={content}/>
         ))}
+        {chatMessages[chatMessages.length - 1]?.role === 'user'
+          ? <Chat key={chatMessages.length} loading role="assistant"/>
+          : null}
       </div>
-        
+      
       <form
         onSubmit={handleSubmit}
         className="p-2 flex items-end border border-slate-500 focus-within:border-slate-400 rounded-xl"
