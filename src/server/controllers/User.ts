@@ -32,7 +32,7 @@ export async function userSignup(req: Request, res: Response) {
       // domain: 'localhost',
       signed: true,
       path: '/',
-      // sameSite: 'none',
+      sameSite: 'none',
     })
     
     const token = createToken(user._id.toString(), user.email, '7d')
@@ -44,7 +44,7 @@ export async function userSignup(req: Request, res: Response) {
       expires,
       httpOnly: true,
       signed: true,
-      // sameSite: 'none',
+      sameSite: 'none',
     })
     
     return res.status(201).json({
@@ -77,7 +77,7 @@ export async function userLogin(req: Request, res: Response) {
       // domain: 'localhost',
       signed: true,
       path: '/',
-      // sameSite: 'none',
+      sameSite: 'none',
     })
     
     const token = createToken(user._id.toString(), user.email, '7d')
@@ -89,7 +89,7 @@ export async function userLogin(req: Request, res: Response) {
       expires,
       httpOnly: true,
       signed: true,
-      // sameSite: 'none',
+      sameSite: 'none',
     })
     
     return res.status(200).json({
@@ -136,7 +136,7 @@ export async function userLogout(req: Request, res: Response) {
       // domain: 'localhost',
       signed: true,
       path: '/',
-      // sameSite: 'none',
+      sameSite: 'none',
     })
 
     return res
