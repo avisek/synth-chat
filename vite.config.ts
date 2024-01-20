@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import express from './vite-plugins/express'
 import useBackend from './vite-plugins/useBackend'
 import githubPages from './vite-plugins/githubPages'
+import add404Html from './vite-plugins/add404Html'
 
 const developmentPort = 3000
 const previewPort = 4000
@@ -47,5 +48,6 @@ export default defineConfig(({ isSsrBuild }) => ({
       return env.GITHUB_ACTIONS === 'true' ? env.OFFICIAL_BACKEND_URL : '/'
     }),
     githubPages(),
+    add404Html(),
   ],
 }))
